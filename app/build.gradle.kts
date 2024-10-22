@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -19,13 +21,6 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
     }
 
     composeOptions {
@@ -45,9 +40,18 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
+
+    api(project(":feature:home"))
+    api(project(":core:designsystem"))
+    api(project(":core:common"))
+    implementation(libs.androidx.navigation.compose)
 
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
@@ -60,7 +64,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -68,4 +72,23 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Androidx Security Crypto
+    implementation(libs.androidx.security.crypto)
+
+    // Retrofit
+    implementation(libs.squareup.adapter.rxjava)
+    implementation(libs.squareup.retrofit)
+    implementation(libs.squareup.converter.jackson)
+    implementation(libs.squareup.converter.gson)
+    implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.logging.interceptor)
+    implementation(libs.squareup.otto)
+    implementation(libs.gson)
+
+    // Hilt Dependency Injection
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler)
 }

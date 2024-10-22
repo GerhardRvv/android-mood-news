@@ -32,10 +32,6 @@ class MainGradlePlugin: Plugin<Project> {
             }
 
             buildTypes {
-                create("debug") {
-                    initWith(getByName("debug"))
-                    isMinifyEnabled = false
-                }
             }
 
             buildFeatures {
