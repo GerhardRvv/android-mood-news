@@ -1,8 +1,8 @@
 package com.grv.home.usecase
 
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import com.grv.common.util.Resource
+import com.grv.common.util.formatDateAsYearMonthDay
 import com.grv.home.mapper.TopNewsUiMapper
 import com.grv.home.model.presentation.NewsCategoryUiState
 import com.grv.home.repository.TopNewsRepository
@@ -18,8 +18,8 @@ class GetTopNewsUseCase  @Inject constructor(
     suspend operator fun invoke(
         sourceCountry: String,
         language: String,
-        date: String = Date().toString()
-    ): Flow<Resource<SnapshotStateList<NewsCategoryUiState>>> = flow {
+        date: String = Date().formatDateAsYearMonthDay()
+    ): Flow<Resource<List<NewsCategoryUiState>>> = flow {
         topNewsRepository.fetchTopNews(
             sourceCountry = sourceCountry,
             language = language,
@@ -33,13 +33,10 @@ class GetTopNewsUseCase  @Inject constructor(
                             topNewsUiMapper.map(article)
                         }
 
-                        val snapshotStateList =
-                            mutableStateListOf(*mappedArticles.toTypedArray())
-                        emit(Resource.Success(snapshotStateList))
+                        emit(Resource.Success(mappedArticles))
                     } ?: run {
                         emit(Resource.Success(mutableStateListOf()))
                     }
-
                 }
 
                 is Resource.Error -> {

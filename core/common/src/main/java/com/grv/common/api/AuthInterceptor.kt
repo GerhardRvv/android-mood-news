@@ -13,9 +13,18 @@ class AuthInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val requestBuilder = originalRequest.newBuilder()
+
         val token = sessionManager.getAuthToken()
-        requestBuilder.header("Accept", "application/vnd.api+json")
-        requestBuilder.header("Authorization", "Bearer $token")
+        requestBuilder.header("Accept", "application/json")
+        requestBuilder.header("Authorization", "Bearer $token") // Comment to test mocked response
+
+        val originalUrl = originalRequest.url
+        val urlWithApiKey = originalUrl.newBuilder()
+            .addQueryParameter("api-key", token) // Comment to test mocked response
+            .build()
+
+        requestBuilder.url(urlWithApiKey)
+
         val request = requestBuilder.build()
         return chain.proceed(request)
     }

@@ -27,13 +27,13 @@ class AppDrawables(
 }
 
 fun lightDrawables(
-    divider: Int = R.drawable.ic_horizontal_divider_light,
+    divider: Int = R.drawable.ic_horizontal_divider_dark,
 ) = AppDrawables(
     divider = divider,
 )
 
 fun darkDrawables(
-    divider: Int = R.drawable.ic_horizontal_divider_dark,
+    divider: Int = R.drawable.ic_horizontal_divider_light,
 ) = AppDrawables(
     divider = divider,
 )

@@ -1,4 +1,4 @@
-rootProject.name = "Mood-news-android"
+rootProject.name = "Mood News"
 include(":app")
 include(":core:common")
 include(":core:designsystem")

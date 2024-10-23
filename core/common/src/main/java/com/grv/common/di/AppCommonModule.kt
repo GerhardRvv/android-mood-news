@@ -36,6 +36,8 @@ class DynamicBaseUrlInterceptor(private val sessionManager: SessionManager) : In
         var request = chain.request()
 
         val newBaseUrl = sessionManager.getBaseUrl()?.toHttpUrl()
+        // Uncomment to test mocked response
+//        val newBaseUrl = "https://gist.githubusercontent.com/GerhardRvv/".toHttpUrl()
         val newUrl = newBaseUrl?.let {
             request.url.newBuilder()
                 .scheme(it.scheme)

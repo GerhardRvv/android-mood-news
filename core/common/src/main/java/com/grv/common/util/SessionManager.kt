@@ -14,7 +14,6 @@ class SessionManager @Inject constructor(
 ) {
 
     companion object {
-        private const val BETA_OPT_IN = "beta_opt_in"
         private const val BASE_URL = "base_url"
         private const val AUTH_TOKEN = "auth_token"
     }
@@ -27,10 +26,6 @@ class SessionManager @Inject constructor(
         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
     )
-
-    fun isBetaOptInEnable(): Boolean {
-        return preferences.getBoolean(BETA_OPT_IN, false)
-    }
 
     fun setBaseUrl(baseUrl: String) {
         val editor = preferences.edit()

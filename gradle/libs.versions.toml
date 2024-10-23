@@ -48,6 +48,8 @@ kotlin = "1.9.25"
 androidxComposeCompiler = "1.5.15"
 navigationCompose = "2.8.3"
 
+#Other
+coil = "2.2.2"
 
 [libraries]
 #Android
@@ -112,6 +114,9 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 gson = { module = "com.google.code.gson:gson", version.ref = "googleGson" }
 
 #Other
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }

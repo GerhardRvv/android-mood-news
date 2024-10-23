@@ -1,7 +1,6 @@
 package com.grv.home.di
 
 import com.google.gson.GsonBuilder
-import com.grv.common.api.ApiJsonConverterFactory
 import com.grv.common.api.AuthInterceptor
 import com.grv.common.di.DynamicBaseUrlInterceptor
 import com.grv.common.util.SessionManager
@@ -11,6 +10,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
@@ -40,9 +40,11 @@ object HomeNetworkModule {
         val converterFactory = GsonConverterFactory.create(gson)
         val baseUrl = sessionManager.getBaseUrl()
 
+        // Uncomment to test mocked response
+//        val baseUrl = "https://gist.githubusercontent.com/GerhardRvv/"
+
         return Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(ApiJsonConverterFactory(gson))
             .addConverterFactory(converterFactory)
             .client(okHttpClient)
             .build()
@@ -57,10 +59,15 @@ object HomeNetworkModule {
     ): OkHttpClient {
         val dynamicBaseUrlInterceptor = DynamicBaseUrlInterceptor(sessionManager)
 
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+
         return okHttpClient
             .newBuilder()
             .addInterceptor(dynamicBaseUrlInterceptor)
             .addInterceptor(authInterceptor)
+            .addInterceptor(loggingInterceptor)
             .build()
     }
 }

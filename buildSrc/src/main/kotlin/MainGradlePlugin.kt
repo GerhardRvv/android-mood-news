@@ -32,6 +32,9 @@ class MainGradlePlugin: Plugin<Project> {
             }
 
             buildTypes {
+                create("development") {
+                    initWith(getByName("development"))
+                }
             }
 
             buildFeatures {

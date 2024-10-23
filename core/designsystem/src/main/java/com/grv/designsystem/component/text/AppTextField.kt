@@ -1,4 +1,4 @@
-package com.grv.designsystem.component
+package com.grv.designsystem.component.text
 
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
@@ -14,7 +14,7 @@ import com.grv.designsystem.theme.AppTheme
 @Composable
 fun AppTextField(
     modifier: Modifier = Modifier,
-    type: TextStyle = AppTheme.typography.h01,
+    style: TextStyle = AppTheme.typography.h01,
     text: String,
     textAlign: TextAlign = TextAlign.Start,
     color: Color = AppTheme.colors.text01,
@@ -22,7 +22,7 @@ fun AppTextField(
     maxLines: Int = Int.MAX_VALUE,
     overflow: TextOverflow = TextOverflow.Ellipsis
 ) {
-    ProvideTextStyle(value = type) {
+    ProvideTextStyle(value = style) {
         Text(
             modifier = modifier,
             text = text,
