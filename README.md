@@ -1,5 +1,8 @@
 # NewsApp
 
+
+![MoodNewsScreenSHotHomeScreen](https://github.com/user-attachments/assets/616a6fe5-8dc0-4018-9d58-3882512ac6be)
+
 #### Description:
 
 - This app allows users to fetch top news articles using an API.
