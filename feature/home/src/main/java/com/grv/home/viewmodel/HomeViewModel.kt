@@ -1,6 +1,5 @@
 package com.grv.home.viewmodel
 
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.grv.common.util.Resource
@@ -24,6 +23,10 @@ class HomeViewModel @Inject constructor(
     private val _homeUiState = MutableStateFlow<HomeUiState>(HomeUiState.Loading())
     val homeUiState : StateFlow<HomeUiState> = _homeUiState
 
+    init {
+        getTopNews()
+    }
+
     private fun getTopNews(): Job = viewModelScope.launch {
         val currentUiState = getCurrentState()
 
@@ -33,7 +36,7 @@ class HomeViewModel @Inject constructor(
             sourceCountry = "us",
             language = "en"
         ).collect { response ->
-            handleResponse(response, currentUiState)
+            handleResponse(response)
         }
     }
 
@@ -56,11 +59,10 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun handleResponse(
-        response: Resource<SnapshotStateList<NewsCategoryUiState>>,
-        currentState: HomeScreenUiState?) {
+        response: Resource<List<NewsCategoryUiState>>) {
         when (response) {
             is Resource.Loading -> handleLoadingState()
-            is Resource.Success -> handleSuccessState(response.data, currentState)
+            is Resource.Success -> handleSuccessState(response.data)
             is Resource.Error -> handleErrorState()
         }
     }
@@ -70,19 +72,17 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun handleSuccessState(
-        data: SnapshotStateList<NewsCategoryUiState>?,
-        currentState: HomeScreenUiState?,
+        data: List<NewsCategoryUiState>?,
         isRefreshing: Boolean = false
     ) {
-        data?.let {
-            if (currentState != null) {
-                _homeUiState.value = HomeUiState.Success(
-                    currentState.copy(
-                        listViewContent = it,
-                        isRefreshing = isRefreshing
-                    )
+        data?.let { listContent ->
+            _homeUiState.value = HomeUiState.Success(
+               HomeScreenUiState(
+                    startDate = LocalDate.now(),
+                    listViewContent = listContent,
+                    isRefreshing = isRefreshing
                 )
-            }
+            )
         }
     }
 
@@ -91,5 +91,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onRefresh() {
+        getTopNews()
     }
 }

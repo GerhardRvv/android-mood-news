@@ -21,6 +21,12 @@ android {
     }
 
     buildTypes {
+        create("development") {
+            initWith(getByName("development"))
+            buildConfigField("String", "NEWS_API_TOKEN", "\"${project.findProperty("NEWS_API_TOKEN")}\"")
+            signingConfig = signingConfigs.getByName("debug")
+            isDebuggable = true
+        }
     }
 
     composeOptions {
@@ -29,6 +35,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
         buildConfig = true
     }
 

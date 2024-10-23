@@ -45,4 +45,8 @@ dependencies {
     api(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.kotlin.stdlib.jdk7)
+
+    // Image
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
 }

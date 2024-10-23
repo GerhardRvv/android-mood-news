@@ -1,6 +1,5 @@
 package com.grv.home.repository
 
-import android.util.Log
 import com.grv.common.util.Resource
 import com.grv.home.api.TopNewsApi
 import com.grv.home.mapper.TopNewsMapper
@@ -12,7 +11,6 @@ import javax.inject.Inject
 
 class TopNewsRepository @Inject constructor(
     private val topNewsApi: TopNewsApi,
-//    private val errorHandler: ErrorHandler,
     private val topNewsMapper: TopNewsMapper,
 ) {
 
@@ -30,14 +28,15 @@ class TopNewsRepository @Inject constructor(
                 date = date
             )
 
+            // Uncomment and replace fetchTopNews with fetchMockResponse to use mock data
+            //val response = topNewsApi.fetchMockResponse()
+
             val mappedResponse = response.top_news.map { article ->
                 topNewsMapper.map(article)
             }
 
             emit(Resource.Success(mappedResponse))
         }.catch { throwable : Throwable ->
-            Log.e("TopNewsRepository", "fetchTopNews: ", throwable)
-//            val error = errorHandler.handleError(throwable)
             emit(Resource.Error(throwable.message))
         }
     }

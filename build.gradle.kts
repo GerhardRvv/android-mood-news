@@ -1,5 +1,3 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     val kotlinVersion by extra("1.9.25")
     val gradleVersion by extra("8.2.2")

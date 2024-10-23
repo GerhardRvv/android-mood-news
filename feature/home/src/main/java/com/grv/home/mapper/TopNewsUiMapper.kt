@@ -1,6 +1,7 @@
 package com.grv.home.mapper
 
 import com.grv.common.util.Mapper
+import com.grv.common.util.formatCardDate
 import com.grv.home.model.domain.NewsArticleDomain
 import com.grv.home.model.domain.NewsCategoryDomain
 import com.grv.home.model.presentation.NewsArticleUiState
@@ -27,7 +28,7 @@ class ArticleUiMapper @Inject constructor() : Mapper<NewsArticleDomain, NewsArti
             content = input.content,
             sourceUrl = input.sourceUrl,
             imageUrl = input.imageUrl,
-            publicationDate = input.publicationDate,
+            publicationDate = input.publicationDate.formatCardDate(),
             author = input.author
         )
     }

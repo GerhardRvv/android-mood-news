@@ -5,5 +5,7 @@
     <string name="navigation_home">Home</string>
     <string name="navigation_search">Search</string>
     <string name="navigation_profile">Profile</string>
+    Today's Top News
+    <string name="today_top_news">Today\'s Top News</string>
     <string name="wip">Coming Soon…</string>
 </resources>

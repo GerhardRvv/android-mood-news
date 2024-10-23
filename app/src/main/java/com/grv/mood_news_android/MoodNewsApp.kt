@@ -19,7 +19,13 @@ class MoodNewsApp : Application() {
 
         sessionManager = SessionManager(this)
         sessionManager.setBaseUrl(getBaseUrl())
+        sessionManager.setAuthToken(getAuthTokenUrl())
     }
+
+    private fun getAuthTokenUrl(): String {
+        return BuildConfig.NEWS_API_TOKEN
+    }
+
 
     private fun getBaseUrl(): String {
         return appContext.applicationContext.resources.getString(R.string.base_url)

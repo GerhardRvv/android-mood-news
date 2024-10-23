@@ -23,11 +23,24 @@ data class AppTypography(
         fontSize = 17.sp,
         lineHeight = 26.sp
     ),
+    val h03: TextStyle = TextStyle(
+        fontFamily = SanFrancisco,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+        lineHeight = 26.sp
+    ),
     val body: TextStyle = TextStyle(
         fontFamily = OpenSans,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
+    ),
+    val bodySmall: TextStyle = TextStyle(
+        fontFamily = OpenSans,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 14.sp,
         letterSpacing = 0.5.sp
     )
 ) {
@@ -35,12 +48,13 @@ data class AppTypography(
         val SanFrancisco = FontFamily(
             Font(font.san_francisco_bold, FontWeight.Normal),
             Font(font.san_francisco_light, FontWeight.Medium),
-
+            Font(font.san_francisco_light, FontWeight.Bold),
         )
 
         val OpenSans = FontFamily(
             Font(font.open_sans_bold, FontWeight.Medium),
             Font(font.open_sans_regular, FontWeight.SemiBold),
+            Font(font.open_sans_regular, FontWeight.Bold),
         )
     }
 }

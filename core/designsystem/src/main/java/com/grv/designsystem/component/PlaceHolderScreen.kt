@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.grv.core_common.R
+import com.grv.designsystem.component.text.AppTextField
 import com.grv.designsystem.theme.AppTheme
 
 @Composable
@@ -37,7 +38,7 @@ fun PlaceHolderScreenContent() {
         ) {
             AppTextField(
                 text = stringResource(id = R.string.wip),
-                type = AppTheme.typography.h01,
+                style = AppTheme.typography.h01,
                 )
         }
     }
