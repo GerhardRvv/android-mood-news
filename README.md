@@ -1,7 +1,7 @@
 # NewsApp
 
+![MoodNewsScreenSHotHomeScreen](https://github.com/user-attachments/assets/3db06810-8ba3-4ce5-9750-7f0cdedd588b)
 
-![MoodNewsScreenSHotHomeScreen](https://github.com/user-attachments/assets/616a6fe5-8dc0-4018-9d58-3882512ac6be)
 
 #### Description:
 
