@@ -16,3 +16,4 @@ local.properties
 .idea/inspectionProfiles/Project_Default.xml
 .idea/misc.xml
 .idea/other.xml
+.idea/deploymentTargetSelector.xml
