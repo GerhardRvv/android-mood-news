@@ -2,6 +2,8 @@
 
 ![MoodNewsScreenSHotHomeScreen](https://github.com/user-attachments/assets/3db06810-8ba3-4ce5-9750-7f0cdedd588b)
 
+![ArticleDetailsScreen](https://github.com/user-attachments/assets/ff48d3a5-f76d-4262-9942-57c035787100)
+
 
 #### Description:
 
@@ -14,6 +16,11 @@
 - At the `Home Screen`:
   - The landing page: The App will fetch today's top articles
   - If articles are found, these will be displayed by category and displayed using carousels (LazyRows).
+  - If the user taps on an article card, the app will navigate to a WebView where the full article can be read.
+ 
+- At the `WebView Screen`:
+  - Here the user can read the full article in a webView hosted inside that app.
+  - If the user taps the `Back button` the app will navigate back to the previous screen.
     
 - At the `Search Screen`: WIP
 - At the `Profile Screen`: WIP
@@ -51,7 +58,7 @@
 - Hilt modules configure and provide instances such as Retrofit, ViewModels, and repositories.
 
 ## Theming
-Defines the visual theme of the application, including colors, drawables and typography.
+Defines the visual theme of the application, including colours, drawables and typography.
 
 ## Application Entry Points
 Primary starting points of the application.
@@ -70,7 +77,7 @@ Primary starting points of the application.
 
 ### How to Run the Project
 1. Clone the repository and open it in Android Studio.
-2. Add your API key in the `local.properties` as follow  `NEWS_API_TOKEN=<your key>`.
+2. Add your API key in the `local.properties` as follows  `NEWS_API_TOKEN=<your key>`.
 3. Select the `development` build variant for debugging.
 4. Run the app on an emulator or a physical device.
 
