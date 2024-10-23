@@ -18,6 +18,8 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -33,6 +35,7 @@ import com.grv.core_common.R
 import com.grv.designsystem.component.PlaceHolderScreen
 import com.grv.designsystem.theme.AppTheme
 import com.grv.home.ui.HomeScreen
+import com.grv.home.ui.WebViewScreen
 import com.grv.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,6 +58,16 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MoodNewsUIApp(homeScreenViewModel: HomeViewModel) {
     val navController = rememberNavController()
+
+    val navigateToWebView by homeScreenViewModel.navigateToWebView.collectAsState()
+
+    LaunchedEffect(navigateToWebView) {
+        navigateToWebView?.let { url ->
+            navController.navigate("webview?url=$url")
+            homeScreenViewModel.onWebViewNavigated()
+        }
+    }
+
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) },
         containerColor = AppTheme.colors.bg01
@@ -67,6 +80,10 @@ fun MoodNewsUIApp(homeScreenViewModel: HomeViewModel) {
             composable(Screen.Home.route) { HomeScreen(homeViewModel = homeScreenViewModel) }
             composable(Screen.Search.route) { PlaceHolderScreen() }
             composable(Screen.Profile.route) { PlaceHolderScreen() }
+            composable("webview?url={url}") { backStackEntry ->
+                val url = backStackEntry.arguments?.getString("url")
+                url?.let { WebViewScreen(navController, it) }
+            }
         }
     }
 }
@@ -113,6 +130,7 @@ fun BottomNavigationBar(navController: NavController) {
             )
         }
     }
+
 }
 
 sealed class Screen(val route: String, @StringRes val resourceId: Int, val icon: ImageVector) {

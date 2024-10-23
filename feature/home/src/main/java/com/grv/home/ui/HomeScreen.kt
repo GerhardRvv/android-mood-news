@@ -44,7 +44,8 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
 
     HomeScreenContent(
         uiState = homeUiState,
-        onRefresh = homeViewModel::onRefresh
+        onRefresh = homeViewModel::onRefresh,
+        onArticleClick = homeViewModel::onArticleClick
     )
 }
 
@@ -52,6 +53,7 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
 @Composable
 fun HomeScreenContent(
     uiState: HomeUiState,
+    onArticleClick: (String) -> Unit = {},
     onRefresh: () -> Unit,
 ) {
 
@@ -83,7 +85,12 @@ fun HomeScreenContent(
             }
 
             is HomeUiState.Success -> {
-                SuccessHomeScreen(uiState, isRefreshing, pullRefreshState)
+                SuccessHomeScreen(
+                    uiState = uiState,
+                    isRefreshing = isRefreshing,
+                    pullRefreshState = pullRefreshState,
+                    onArticleClick = onArticleClick
+                )
             }
 
             is HomeUiState.Error -> {
@@ -102,6 +109,7 @@ private fun SuccessHomeScreen(
     uiState: HomeUiState.Success,
     isRefreshing: Boolean,
     pullRefreshState: PullRefreshState,
+    onArticleClick: (String) -> Unit = {}
 ) {
 
     val lazyListState = rememberLazyListState()
@@ -137,8 +145,9 @@ private fun SuccessHomeScreen(
                                     content = article.content,
                                     imageUrl = article.imageUrl,
                                     publicationDate = article.publicationDate,
-                                    author = article.author
-                                ) {}
+                                    author = article.author,
+                                    onArticleClick = onArticleClick
+                                )
                             }
                         }
                     }
