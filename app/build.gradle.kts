@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -18,12 +20,23 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled = true
+
+        val keystoreFile = project.rootProject.file("local.properties")
+        val properties = Properties()
+        properties.load(keystoreFile.inputStream())
+
+        val apiKey = properties.getProperty("NEWS_API_TOKEN") ?: ""
+
+        buildConfigField(
+            type = "String",
+            name = "NEWS_API_TOKEN",
+            value = apiKey
+        )
     }
 
     buildTypes {
         create("development") {
             initWith(getByName("development"))
-            buildConfigField("String", "NEWS_API_TOKEN", "\"${project.findProperty("NEWS_API_TOKEN")}\"")
             signingConfig = signingConfigs.getByName("debug")
             isDebuggable = true
         }
