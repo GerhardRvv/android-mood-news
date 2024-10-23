@@ -23,6 +23,9 @@ class HomeViewModel @Inject constructor(
     private val _homeUiState = MutableStateFlow<HomeUiState>(HomeUiState.Loading())
     val homeUiState : StateFlow<HomeUiState> = _homeUiState
 
+    private val _navigateToWebView = MutableStateFlow<String?>(null)
+    val navigateToWebView: StateFlow<String?> = _navigateToWebView
+
     init {
         getTopNews()
     }
@@ -92,5 +95,13 @@ class HomeViewModel @Inject constructor(
 
     fun onRefresh() {
         getTopNews()
+    }
+
+    fun onArticleClick(url: String) {
+        _navigateToWebView.value = url
+    }
+
+    fun onWebViewNavigated() {
+        _navigateToWebView.value = null
     }
 }

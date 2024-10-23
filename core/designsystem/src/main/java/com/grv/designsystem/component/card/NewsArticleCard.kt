@@ -64,10 +64,7 @@ fun NewsArticleCard(
                     placeholder = painterResource(R.drawable.ic_launcher_foreground),
                     contentDescription = "Product image",
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier
-//                    .align(Alignment.CenterVertically)
-//                    .clip(CircleShape)
-                        .size(60.dp)
+                    modifier = Modifier.size(60.dp)
                 )
 
                 Spacer(modifier = Modifier.width(8.dp))
