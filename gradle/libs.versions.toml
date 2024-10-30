@@ -19,14 +19,13 @@ composeBom = "2024.09.02"
 androidxConstraintLayoutCompose = "1.0.1"
 composeNavigationGraph = "2.8.1"
 lifecycleViewmodelComposeVersion = "2.6.1"
-
 hilt = "2.48"
 hiltExt = "1.2.0"
 daggerCompiler = "2.16"
-
 #Google
 googleGson = "2.9.1"
-
+#Room
+room = "2.6.1"
 #Squareup
 squareupMockwebserver = "3.10.0"
 squareupRetrofitMock = "2.1.0"
@@ -36,7 +35,6 @@ squareupLoggingInterceptor = "4.10.0"
 squareupOkhttp = "4.10.0"
 squareupOtto = "1.3.8"
 squareupRetrofit = "2.9.0"
-
 #Kotlin
 fragmentKtxVersion = "1.5.7"
 kotlinAndroidExtensionsRuntime = "1.9.25"
@@ -44,10 +42,8 @@ kotlinStdlibJdk7 = "1.9.20"
 kotlinxCoroutines = "1.7.3"
 kotlinxCoroutineCore = "1.7.3"
 kotlin = "1.9.25"
-
 androidxComposeCompiler = "1.5.15"
 navigationCompose = "2.8.3"
-
 #Other
 coil = "2.2.2"
 
@@ -57,14 +53,12 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
 androidx-fragment = { module = "androidx.fragment:fragment", version.ref = "fragmentVersion" }
 androidx-activity = { module = "androidx.activity:activity", version.ref = "activityVersion" }
-
 #DI
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "daggerCompiler" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
-
 #Compose/UI
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
@@ -81,7 +75,6 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-compose-constraint-layout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidxConstraintLayoutCompose" }
 androidx-compose-navigation-graph = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigationGraph" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelComposeVersion" }
-
 #Kotlin
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityVersion" }
@@ -90,8 +83,10 @@ kotlin-android-extensions-runtime = { module = "org.jetbrains.kotlin:kotlin-andr
 kotlin-stdlib-jdk7 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlinStdlibJdk7" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutineCore" }
-
-
+#Room
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 #Square
 mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "squareupMockwebserver" }
 retrofit-mock = { module = "com.squareup.retrofit2:retrofit-mock", version.ref = "squareupRetrofitMock" }
@@ -102,22 +97,17 @@ squareup-logging-interceptor = { module = "com.squareup.okhttp3:logging-intercep
 squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "squareupOkhttp" }
 squareup-otto = { module = "com.squareup:otto", version.ref = "squareupOtto" }
 squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "squareupRetrofit" }
-
 #Test
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-
 #Google
 gson = { module = "com.google.code.gson:gson", version.ref = "googleGson" }
-
 #Other
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
-
-
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
