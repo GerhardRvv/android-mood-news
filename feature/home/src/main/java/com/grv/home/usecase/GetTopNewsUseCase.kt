@@ -18,12 +18,14 @@ class GetTopNewsUseCase  @Inject constructor(
     suspend operator fun invoke(
         sourceCountry: String,
         language: String,
-        date: String = Date().formatDateAsYearMonthDay()
+        date: String = Date().formatDateAsYearMonthDay(),
+        forceRefresh: Boolean = false
     ): Flow<Resource<List<NewsCategoryUiState>>> = flow {
         topNewsRepository.fetchTopNews(
             sourceCountry = sourceCountry,
             language = language,
-            date = date
+            date = date,
+            forceRefresh = forceRefresh
         ).collect { response ->
             when (response) {
                 is Resource.Loading -> emit(Resource.Loading())

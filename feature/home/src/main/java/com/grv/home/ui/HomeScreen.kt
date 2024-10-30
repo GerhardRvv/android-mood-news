@@ -2,6 +2,7 @@ package com.grv.home.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -94,10 +95,24 @@ fun HomeScreenContent(
             }
 
             is HomeUiState.Error -> {
-                Text(
-                    uiState.message,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clickable { onRefresh() },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        AppTextField(
+                            color = AppTheme.colors.text01,
+                            text = uiState.message,
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        AppTextField(
+                            color = AppTheme.colors.text01,
+                            text = stringResource(id = R.string.tap_to_retry),
+                        )
+                    }
+                }
             }
         }
     }
@@ -167,7 +182,9 @@ private fun SuccessHomeScreen(
 @Composable
 private fun ListHeader() {
     Column(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 14.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         AppTextField(

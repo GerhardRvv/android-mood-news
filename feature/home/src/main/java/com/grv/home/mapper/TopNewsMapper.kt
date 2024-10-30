@@ -1,5 +1,6 @@
 package com.grv.home.mapper
 
+import com.grv.common.data.db.entity.NewsArticleEntity
 import com.grv.common.util.Mapper
 import com.grv.home.model.domain.NewsArticleDomain
 import com.grv.home.model.domain.NewsCategoryDomain
@@ -16,6 +17,31 @@ class TopNewsMapper @Inject constructor(
             newsCategories = input.news.map { article ->
                 articleMapper.map(article)
             }
+        )
+    }
+
+    fun mapFromEntity(entity: NewsArticleEntity): NewsArticleDomain {
+        return NewsArticleDomain(
+            id = entity.id,
+            title = entity.title,
+            content = entity.content,
+            sourceUrl = entity.sourceUrl,
+            imageUrl = entity.imageUrl,
+            publicationDate = entity.publicationDate,
+            author = entity.author
+        )
+    }
+
+    fun mapToEntity(article: NewsArticleDomain, categoryId: Long): NewsArticleEntity {
+        return NewsArticleEntity(
+            id = article.id,
+            categoryId = categoryId,
+            title = article.title,
+            content = article.content,
+            sourceUrl = article.sourceUrl,
+            imageUrl = article.imageUrl,
+            publicationDate = article.publicationDate,
+            author = article.author
         )
     }
 }

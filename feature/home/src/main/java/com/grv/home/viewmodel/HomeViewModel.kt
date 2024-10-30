@@ -30,14 +30,15 @@ class HomeViewModel @Inject constructor(
         getTopNews()
     }
 
-    private fun getTopNews(): Job = viewModelScope.launch {
+    private fun getTopNews(forcedRefresh: Boolean = false): Job = viewModelScope.launch {
         val currentUiState = getCurrentState()
 
         setLoadingState(currentUiState)
 
         homeUseCaseProvider.getTopNewsUseCase.invoke(
             sourceCountry = "us",
-            language = "en"
+            language = "en",
+            forceRefresh = forcedRefresh
         ).collect { response ->
             handleResponse(response)
         }
@@ -94,7 +95,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onRefresh() {
-        getTopNews()
+        getTopNews(forcedRefresh = true)
     }
 
     fun onArticleClick(url: String) {
