@@ -58,4 +58,17 @@ dependencies {
     implementation(libs.squareup.okhttp)
     implementation(libs.squareup.logging.interceptor)
     implementation(libs.gson)
+
+    // Test
+    testImplementation(libs.truth)
+    testImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk.android)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.core)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.core)
+
+    testImplementation(libs.coroutines.test)
 }
