@@ -1,9 +1,7 @@
 [versions]
 agp = "8.7.1"
 coreKtx = "1.13.1"
-junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
+
 kotlinGradlePlugin = "1.9.25"
 lifecycleRuntimeKtx = "2.6.1"
 activityVersion = "1.7.2"
@@ -44,6 +42,15 @@ kotlinxCoroutineCore = "1.7.3"
 kotlin = "1.9.25"
 androidxComposeCompiler = "1.5.15"
 navigationCompose = "2.8.3"
+#Test
+truth = "1.1.3"
+mockk = "1.12.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+androidx-test = "1.4.0"
+espresso = "3.4.0"
+coroutines = "1.5.2"
 #Other
 coil = "2.2.2"
 
@@ -103,6 +110,13 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-test" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 #Google
 gson = { module = "com.google.code.gson:gson", version.ref = "googleGson" }
 #Other
